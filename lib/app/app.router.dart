@@ -12,6 +12,7 @@ import 'package:stacked/stacked.dart';
 
 import '../UI/home.dart';
 import '../UI/login.dart';
+import '../UI/room_view_widgetv1.dart';
 import '../accounts/login/login_view.dart';
 import '../accounts/sign_up/create_account_view.dart';
 import '../startup/startup_view.dart';
@@ -20,12 +21,14 @@ class Routes {
   static const String homeView = '/home-view';
   static const String login = '/Login';
   static const String loginView = '/login-view';
+  static const String roomView = '/room-view';
   static const String createAccountView = '/create-account-view';
   static const String startUpView = '/';
   static const all = <String>{
     homeView,
     login,
     loginView,
+    roomView,
     createAccountView,
     startUpView,
   };
@@ -38,6 +41,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.homeView, page: HomeView),
     RouteDef(Routes.login, page: Login),
     RouteDef(Routes.loginView, page: LoginView),
+    RouteDef(Routes.roomView, page: RoomView),
     RouteDef(Routes.createAccountView, page: CreateAccountView),
     RouteDef(Routes.startUpView, page: StartUpView),
   ];
@@ -62,6 +66,12 @@ class StackedRouter extends RouterBase {
       );
       return CupertinoPageRoute<dynamic>(
         builder: (context) => LoginView(key: args.key),
+        settings: data,
+      );
+    },
+    RoomView: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const RoomView(),
         settings: data,
       );
     },

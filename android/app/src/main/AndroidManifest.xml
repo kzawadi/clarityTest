@@ -2,6 +2,7 @@
     package="com.example.clarity">
    <application
         android:label="clarity"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -1,7 +1,9 @@
 import 'package:clarity/UI/home.dart';
 import 'package:clarity/UI/login.dart';
+import 'package:clarity/UI/room_view_widgetv1.dart';
 import 'package:clarity/accounts/login/login_view.dart';
 import 'package:clarity/accounts/sign_up/create_account_view.dart';
+import 'package:clarity/services/audio_services.dart';
 import 'package:clarity/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
@@ -12,11 +14,13 @@ import 'package:stacked_services/stacked_services.dart';
     CupertinoRoute(page: HomeView),
     CupertinoRoute(page: Login),
     CupertinoRoute(page: LoginView),
+    CupertinoRoute(page: RoomView),
     CupertinoRoute(page: CreateAccountView),
     CupertinoRoute(page: StartUpView, initial: true)
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
+    LazySingleton(classType: Audio),
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: DialogService),
 

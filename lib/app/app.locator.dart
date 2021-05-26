@@ -10,6 +10,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../UIv2/pages/home_ViewModel.dart';
 import '../services/audio_services.dart';
 
 final locator = StackedLocator.instance;
@@ -19,5 +20,6 @@ void setupLocator() {
   locator.registerLazySingleton(() => Audio());
   locator.registerLazySingleton(() => BottomSheetService());
   locator.registerLazySingleton(() => DialogService());
+  locator.registerSingleton(HomeViewmodel());
   locator.registerSingleton(FirebaseAuthenticationService());
 }

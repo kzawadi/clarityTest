@@ -12,14 +12,14 @@ class StartUpViewModel extends BaseViewModel {
   final NavigationService _navigationService = locator<NavigationService>();
 
   Future<bool> isUserLoggedIn() async {
-    var user = await _authenticationService.firebaseAuth.currentUser;
+    var user = _authenticationService.firebaseAuth.currentUser;
     return user != null;
   }
 
   Future handleStartUpLogic() async {
     await isUserLoggedIn().then((v) {
       if (v) {
-        _navigationService.replaceWith(Routes.homeView);
+        _navigationService.replaceWith(Routes.floorPage);
       } else {
         _navigationService.replaceWith(Routes.loginView);
       }

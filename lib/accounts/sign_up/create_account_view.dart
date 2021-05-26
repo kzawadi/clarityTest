@@ -1,6 +1,7 @@
 import 'package:clarity/accounts/sign_up/create_account_viewModel.dart';
 import 'package:clarity/auth_widget/authentication_layout.dart';
 import 'package:clarity/main.dart';
+import 'package:clarity/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -20,7 +21,7 @@ class CreateAccountView extends StatelessWidget with $CreateAccountView {
     return ViewModelBuilder<CreateAccountViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       builder: (context, model, child) => Scaffold(
-          backgroundColor: Palette.background,
+          backgroundColor: KColors.background,
           body: AuthenticationLayout(
             busy: model.isBusy,
             onMainButtonTapped: model.saveData,

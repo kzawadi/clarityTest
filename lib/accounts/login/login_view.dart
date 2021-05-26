@@ -1,5 +1,6 @@
 import 'package:clarity/auth_widget/authentication_layout.dart';
 import 'package:clarity/main.dart';
+import 'package:clarity/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -19,7 +20,7 @@ class LoginView extends StatelessWidget with $LoginView {
     return ViewModelBuilder<LoginViewModel>.reactive(
       onModelReady: (model) => listenToFormUpdated(model),
       builder: (context, model, child) => Scaffold(
-          backgroundColor: Palette.background,
+          backgroundColor: KColors.background,
           body: AuthenticationLayout(
             busy: model.isBusy,
             onMainButtonTapped: model.saveData,

@@ -1,5 +1,6 @@
 import 'package:clarity/UI/roomViewModel.dart';
-import 'package:clarity/UI/room_view_widgetv1.dart';
+import 'package:clarity/UI/room_view_widget.dart';
+import 'package:clarity/UI/widgets/bottom_menu_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -26,17 +27,29 @@ class HomeView extends StatelessWidget {
                   ),
                 ],
               ),
-              body: Stack(
-                children: [
-                  Container(
-                    child: Text("waiting"),
-                  ),
-                  RoomView(),
-                ],
+              body: Center(
+                child: Stack(
+                  children: [
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: RoomViewMin(),
+                    ),
+                  ],
+                ),
               ),
               floatingActionButton: FloatingActionButton(
-                onPressed: model.createRoom,
+                onPressed: () {
+                  model.createRoom();
+                  if (!model.isOpen) {
+                    model.isOpen = true;
+                    model.roomBottomSheetHeight =
+                        MediaQuery.of(context).size.height / 1.086;
+                  }
+                },
               ),
+              bottomNavigationBar: BottomMenuBar(),
             ),
         viewModelBuilder: () => RoomViewModel());
   }

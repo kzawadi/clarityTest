@@ -1,4 +1,6 @@
 import 'package:clarity/app/app.locator.dart';
+import 'package:clarity/model/dactor_model.dart';
+import 'package:clarity/model/data.dart';
 import 'package:clarity/services/audio_services.dart';
 import 'package:clarity/services/utility.dart';
 import 'package:stacked/stacked.dart';
@@ -22,11 +24,17 @@ class RoomViewModel extends StreamViewModel {
   bool get inRoom => _inRoom;
   bool get isMicOn => _isMicOn;
 
+  // List<DoctorModel> _doctorDataList =
+  //     doctorMapList.map((x) => DoctorModel.fromJson(x)).toList();
+  // List<DoctorModel> get doctorDataList => _doctorDataList;
+
   @override
   Stream get stream => _audioServices.listenToparticipants();
 
   void createRoom() {
-    _audioServices.createRoom();
+    _audioServices
+        .initRenderers()
+        .whenComplete(() => _audioServices.createRoom());
     cprint("create room clicked");
   }
 

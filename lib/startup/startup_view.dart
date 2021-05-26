@@ -1,5 +1,6 @@
 import 'package:clarity/main.dart';
 import 'package:clarity/startup/startup_viewModel.dart';
+import 'package:clarity/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -14,7 +15,7 @@ class StartUpView extends StatelessWidget {
       disposeViewModel: false,
       onModelReady: (model) => model.handleStartUpLogic(),
       builder: (context, model, child) => Scaffold(
-        backgroundColor: Palette.appBackgroundColor,
+        backgroundColor: KColors.background,
         body: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -27,7 +28,7 @@ class StartUpView extends StatelessWidget {
               CircularProgressIndicator(
                 strokeWidth: 3,
                 valueColor: AlwaysStoppedAnimation(
-                  Palette.green,
+                  KColors.primary,
                 ),
               )
             ],

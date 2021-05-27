@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:clarity/UIv2/pages/profile_services.dart';
 import 'package:clarity/app/app.locator.dart';
 import 'package:clarity/app/app.router.dart';
+import 'package:clarity/model/user_profile_model.dart';
 import 'package:clarity/services/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -36,6 +37,16 @@ class ProfileViewModel extends FutureViewModel {
       _image = file;
       notifyListeners();
     });
-    // notifyListeners();
+  }
+
+  Future<void> uploadprofileData(
+      {@required String name, @required String surname}) async {
+    UserProfileModel x = UserProfileModel(
+      firstName: name,
+      surname: surname,
+    );
+
+    // _profileServices.uploadProfileToDb(userProfileModel: x);
+    _profileServices.updateUserProfile(user: x, image: imagePicked);
   }
 }

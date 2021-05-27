@@ -27,7 +27,10 @@ class ProfileEditingPage extends HookWidget {
           title: customTitleText('Profile Edit'),
           actions: <Widget>[
             InkWell(
-              // onTap: _submitButton,
+              onTap: () {
+                model.uploadprofileData(
+                    name: _name.text, surname: _surname.text);
+              },
               child: Center(
                 child: Text(
                   'Save',
@@ -164,6 +167,6 @@ class ProfileEditingPage extends HookWidget {
     );
   }
 
-  String dummyProfilePic =
+  final String dummyProfilePic =
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6TaCLCqU4K0ieF27ayjl51NmitWaJAh_X0r1rLX4gMvOe0MDaYw&s';
 }

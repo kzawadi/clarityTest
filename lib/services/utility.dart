@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:developer' as developer;
+import 'package:url_launcher/url_launcher.dart';
+import 'package:clarity/UIv2/theme/theme.dart';
 
 // final kAnalytics = FirebaseAnalytics();
 // final DatabaseReference kDatabase = FirebaseDatabase.instance.reference();
@@ -210,3 +212,51 @@ bool validateEmal(String email) {
 //     path ?? dummyProfilePic,
 //   );
 // }
+launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    cprint('Could not launch $url');
+  }
+}
+
+Widget customTitleText(String title, {BuildContext context}) {
+  return Text(
+    title ?? '',
+    style: TextStyle(
+        color: Colors.black87,
+        fontFamily: 'HelveticaNeue',
+        fontWeight: FontWeight.w900,
+        fontSize: 20),
+  );
+}
+
+Widget customText(String msg,
+    {Key key,
+    TextStyle style,
+    TextAlign textAlign = TextAlign.justify,
+    TextOverflow overflow = TextOverflow.visible,
+    BuildContext context,
+    bool softwrap = true}) {
+  if (msg == null) {
+    return SizedBox(
+      height: 0,
+      width: 0,
+    );
+  } else {
+    if (context != null && style != null) {
+      var fontSize =
+          style.fontSize ?? Theme.of(context).textTheme.body1.fontSize;
+      style = style.copyWith(
+          fontSize: fontSize - (AppTheme.fullWidth(context) <= 375 ? 2 : 0));
+    }
+    return Text(
+      msg,
+      style: style,
+      textAlign: textAlign,
+      overflow: overflow,
+      softWrap: softwrap,
+      key: key,
+    );
+  }
+}

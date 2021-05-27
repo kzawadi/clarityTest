@@ -1,8 +1,7 @@
 import 'package:animations/animations.dart';
-import 'package:clarity/UI/widgets/bottom_menu_bar.dart';
+import 'package:clarity/UIv2/pages/detail_page.dart';
 import 'package:clarity/UIv2/pages/floor_ViewModel.dart';
 import 'package:clarity/UIv2/pages/home_page.dart';
-import 'package:clarity/app/app.locator.dart';
 import 'package:clarity/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -69,7 +68,7 @@ class FloorPage extends StatelessWidget {
       case 1:
         return HomePage();
       default:
-        return HomePage();
+        return ProfilePage();
     }
   }
 }

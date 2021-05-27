@@ -13,8 +13,10 @@ import 'package:stacked/stacked.dart';
 import '../UI/home.dart';
 import '../UI/login.dart';
 import '../UI/room_view_widget.dart';
+import '../UIv2/pages/detail_page.dart';
 import '../UIv2/pages/floor_page.dart';
 import '../UIv2/pages/home_page.dart';
+import '../UIv2/pages/profile_edit_page.dart';
 import '../accounts/login/login_view.dart';
 import '../accounts/sign_up/create_account_view.dart';
 import '../startup/startup_view.dart';
@@ -27,6 +29,8 @@ class Routes {
   static const String createAccountView = '/create-account-view';
   static const String homePage = '/home-page';
   static const String floorPage = '/floor-page';
+  static const String profileEditingPage = '/profile-editing-page';
+  static const String profilePage = '/profile-page';
   static const String startUpView = '/';
   static const all = <String>{
     homeView,
@@ -36,6 +40,8 @@ class Routes {
     createAccountView,
     homePage,
     floorPage,
+    profileEditingPage,
+    profilePage,
     startUpView,
   };
 }
@@ -51,6 +57,8 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.createAccountView, page: CreateAccountView),
     RouteDef(Routes.homePage, page: HomePage),
     RouteDef(Routes.floorPage, page: FloorPage),
+    RouteDef(Routes.profileEditingPage, page: ProfileEditingPage),
+    RouteDef(Routes.profilePage, page: ProfilePage),
     RouteDef(Routes.startUpView, page: StartUpView),
   ];
   @override
@@ -107,6 +115,21 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    ProfileEditingPage: (data) {
+      var args = data.getArgs<ProfileEditingPageArguments>(
+        orElse: () => ProfileEditingPageArguments(),
+      );
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => ProfileEditingPage(key: args.key),
+        settings: data,
+      );
+    },
+    ProfilePage: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const ProfilePage(),
+        settings: data,
+      );
+    },
     StartUpView: (data) {
       return CupertinoPageRoute<dynamic>(
         builder: (context) => const StartUpView(),
@@ -136,4 +159,10 @@ class RoomViewMinArguments {
 class CreateAccountViewArguments {
   final Key key;
   CreateAccountViewArguments({this.key});
+}
+
+/// ProfileEditingPage arguments holder class
+class ProfileEditingPageArguments {
+  final Key key;
+  ProfileEditingPageArguments({this.key});
 }

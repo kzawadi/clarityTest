@@ -1,8 +1,4 @@
-// import 'dart:js';
 import 'dart:math';
-
-import 'package:clarity/UI/roomViewModel.dart';
-import 'package:clarity/UI/widgets/bottom_menu_bar.dart';
 import 'package:clarity/UIv2/pages/home_ViewModel.dart';
 import 'package:clarity/UIv2/theme/light_color.dart';
 import 'package:clarity/UIv2/theme/text_styles.dart';
@@ -10,26 +6,11 @@ import 'package:clarity/UIv2/theme/theme.dart';
 import 'package:clarity/app/app.locator.dart';
 import 'package:clarity/model/dactor_model.dart';
 import 'package:clarity/UIv2/theme/extention.dart';
-// import 'package:clarity/model/data.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 
-// class HomePage extends StatefulWidget {
-//   HomePage({Key key}) : super(key: key);
-
-//   @override
-//   _HomePageState createState() => _HomePageState();
-// }
-
 class HomePage extends StatelessWidget {
-  // List<DoctorModel> doctorDataList;
-  // @override
-  // void initState() {
-  //   doctorDataList = doctorMapList.map((x) => DoctorModel.fromJson(x)).toList();
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewmodel>.reactive(

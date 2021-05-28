@@ -6,7 +6,7 @@ import 'package:clarity/model/user_profile_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 
-class HomeViewmodel extends FutureViewModel<List<DoctorModel>> {
+class HomeViewmodel extends BaseViewModel {
   // final _profileServices = locator<ProfileServices>();
   // final _authServices = locator<FirebaseAuthenticationService>();
 
@@ -14,14 +14,14 @@ class HomeViewmodel extends FutureViewModel<List<DoctorModel>> {
   //     doctorMapList.map((x) => DoctorModel.fromJson(x)).toList();
   // List<DoctorModel> get doctorDataList => _doctorDataList;
 
-  Future<List<DoctorModel>> getDoctors() async {
-    _doctorDataList =
-        doctorMapList.map((x) => DoctorModel.fromJson(x)).toList();
-    // List<DoctorModel> get doctorDataList => _doctorDataList;
+  // Future<List<DoctorModel>> getDoctors() async {
+  //   _doctorDataList =
+  //       doctorMapList.map((x) => DoctorModel.fromJson(x)).toList();
+  //   // List<DoctorModel> get doctorDataList => _doctorDataList;
 
-    return _doctorDataList;
-  }
+  //   return _doctorDataList;
+  // }
 
-  @override
-  Future<List<DoctorModel>> futureToRun() => getDoctors();
+  // @override
+  // Future<List<DoctorModel>> futureToRun() => getDoctors();
 }

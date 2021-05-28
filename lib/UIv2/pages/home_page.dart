@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:clarity/UIv2/pages/app_bar_view.dart';
+import 'package:clarity/UIv2/pages/doctors/doctor_page.dart';
 import 'package:clarity/UIv2/pages/home_ViewModel.dart';
 import 'package:clarity/UIv2/pages/home_header_view.dart';
 import 'package:clarity/UIv2/theme/light_color.dart';
@@ -17,72 +18,32 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewmodel>.reactive(
-        disposeViewModel: false,
-        initialiseSpecialViewModelsOnce: true,
-        onModelReady: (model) => model.futureToRun,
-        builder: (context, model, child) => Scaffold(
-              appBar: AppBarView(),
-              backgroundColor: Theme.of(context).backgroundColor,
-              body: CustomScrollView(
-                physics: BouncingScrollPhysics(),
-                slivers: <Widget>[
-                  SliverList(
-                    delegate: SliverChildListDelegate(
-                      [
-                        HomeHeaderView(),
-                        _searchField(context),
-                        _category(context),
-                      ],
-                    ),
-                  ),
-                  _doctorsList(context, model)
+      disposeViewModel: false,
+      initialiseSpecialViewModelsOnce: true,
+      // onModelReady: (model) => model.futureToRun,
+      builder: (context, model, child) => Scaffold(
+        appBar: AppBarView(),
+        backgroundColor: Theme.of(context).backgroundColor,
+        body: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: <Widget>[
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  HomeHeaderView(),
+                  _searchField(context),
+                  _category(context),
                 ],
               ),
-              // bottomNavigationBar: BottomMenuBar(),
             ),
-        viewModelBuilder: () => locator<HomeViewmodel>());
+            DoctorPage(),
+          ],
+        ),
+        // bottomNavigationBar: BottomMenuBar(),
+      ),
+      viewModelBuilder: () => locator<HomeViewmodel>(),
+    );
   }
-
-  // Widget _appBar(BuildContext context, HomeViewmodel model) {
-  //   return AppBar(
-  //     elevation: 0,
-  //     backgroundColor: Theme.of(context).backgroundColor,
-  //     leading: Icon(
-  //       Icons.short_text,
-  //       size: 30,
-  //       color: Colors.black,
-  //     ),
-  //     actions: <Widget>[
-  //       Icon(
-  //         Icons.notifications_none,
-  //         size: 30,
-  //         color: LightColor.grey,
-  //       ),
-  //       ClipRRect(
-  //         borderRadius: BorderRadius.all(Radius.circular(13)),
-  //         child: Container(
-  //           // height: 40,
-  //           // width: 40,
-  //           decoration: BoxDecoration(
-  //             color: Theme.of(context).backgroundColor,
-  //           ),
-  //           child: Image.asset(model.userData.photoUrl ?? "assets/user.png",
-  //               fit: BoxFit.fill),
-  //         ),
-  //       ).p(8),
-  //     ],
-  //   );
-  // }
-
-  // Widget _header(BuildContext context, HomeViewmodel model) {
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     children: <Widget>[
-  //       Text("Hello,", style: TextStyles.title.subTitleColor),
-  //       Text(model.userData.firstName ?? "name", style: TextStyles.h1Style),
-  //     ],
-  //   ).p16;
-  // }
 
   Widget _searchField(BuildContext context) {
     return Container(
@@ -213,114 +174,5 @@ class HomePage extends StatelessWidget {
         ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(20))),
       ),
     );
-  }
-
-  Widget _doctorsList(BuildContext context, HomeViewmodel model) {
-    return SliverList(
-      delegate: SliverChildListDelegate(
-        [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text("Top Doctors", style: TextStyles.title.bold),
-              IconButton(
-                  icon: Icon(
-                    Icons.sort,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  onPressed: () {})
-              // .p(12).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(20))),
-            ],
-          ).hP16,
-          model.dataReady
-              ? getdoctorWidgetList(context, model)
-              : Center(child: Text("no data"))
-        ],
-      ),
-    );
-  }
-
-  Widget getdoctorWidgetList(BuildContext context, HomeViewmodel model) {
-    List<DoctorModel> v = model.data;
-    return Column(
-        children: v.map((x) {
-      return _doctorTile(context, x);
-    }).toList());
-  }
-
-  Widget _doctorTile(BuildContext context, DoctorModel model) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            offset: Offset(4, 4),
-            blurRadius: 10,
-            color: LightColor.grey.withOpacity(.2),
-          ),
-          BoxShadow(
-            offset: Offset(-3, 0),
-            blurRadius: 15,
-            color: LightColor.grey.withOpacity(.1),
-          )
-        ],
-      ),
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
-        child: ListTile(
-          contentPadding: EdgeInsets.all(0),
-          leading: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(13)),
-            child: Container(
-              height: 55,
-              width: 55,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: randomColor(context),
-              ),
-              child: Image.asset(
-                model.image,
-                height: 50,
-                width: 50,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
-          title: Text(model.name, style: TextStyles.title.bold),
-          subtitle: Text(
-            model.type,
-            style: TextStyles.bodySm.subTitleColor.bold,
-          ),
-          trailing: Icon(
-            Icons.keyboard_arrow_right,
-            size: 30,
-            color: Theme.of(context).primaryColor,
-          ),
-        ),
-      ).ripple(() {
-        Navigator.pushNamed(context, "/DetailPage", arguments: model);
-      }, borderRadius: BorderRadius.all(Radius.circular(20))),
-    );
-  }
-
-  Color randomColor(BuildContext context) {
-    var random = Random();
-    final colorList = [
-      Theme.of(context).primaryColor,
-      LightColor.orange,
-      LightColor.green,
-      LightColor.grey,
-      LightColor.lightOrange,
-      LightColor.skyBlue,
-      LightColor.titleTextColor,
-      Colors.red,
-      Colors.brown,
-      LightColor.purpleExtraLight,
-      LightColor.skyBlue,
-    ];
-    var color = colorList[random.nextInt(colorList.length)];
-    return color;
   }
 }

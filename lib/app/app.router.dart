@@ -15,6 +15,7 @@ import '../UI/login.dart';
 import '../UI/room_view_widget.dart';
 import '../UIv2/pages/app_bar_view.dart';
 import '../UIv2/pages/detail_page.dart';
+import '../UIv2/pages/doctors/doctor_page.dart';
 import '../UIv2/pages/floor_page.dart';
 import '../UIv2/pages/home_header_view.dart';
 import '../UIv2/pages/home_page.dart';
@@ -35,6 +36,7 @@ class Routes {
   static const String profilePage = '/profile-page';
   static const String appBarView = '/app-bar-view';
   static const String homeHeaderView = '/home-header-view';
+  static const String doctorPage = '/doctor-page';
   static const String startUpView = '/';
   static const all = <String>{
     homeView,
@@ -48,6 +50,7 @@ class Routes {
     profilePage,
     appBarView,
     homeHeaderView,
+    doctorPage,
     startUpView,
   };
 }
@@ -67,6 +70,7 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.profilePage, page: ProfilePage),
     RouteDef(Routes.appBarView, page: AppBarView),
     RouteDef(Routes.homeHeaderView, page: HomeHeaderView),
+    RouteDef(Routes.doctorPage, page: DoctorPage),
     RouteDef(Routes.startUpView, page: StartUpView),
   ];
   @override
@@ -147,6 +151,12 @@ class StackedRouter extends RouterBase {
     HomeHeaderView: (data) {
       return CupertinoPageRoute<dynamic>(
         builder: (context) => const HomeHeaderView(),
+        settings: data,
+      );
+    },
+    DoctorPage: (data) {
+      return CupertinoPageRoute<dynamic>(
+        builder: (context) => const DoctorPage(),
         settings: data,
       );
     },

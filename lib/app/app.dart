@@ -4,6 +4,7 @@ import 'package:clarity/UI/login.dart';
 import 'package:clarity/UI/room_view_widget.dart';
 import 'package:clarity/UIv2/pages/app_bar_view.dart';
 import 'package:clarity/UIv2/pages/detail_page.dart';
+import 'package:clarity/UIv2/pages/doctors/doctor_page.dart';
 import 'package:clarity/UIv2/pages/floor_ViewModel.dart';
 import 'package:clarity/UIv2/pages/floor_page.dart';
 import 'package:clarity/UIv2/pages/home_ViewModel.dart';
@@ -16,6 +17,7 @@ import 'package:clarity/UIv2/pages/profile_services.dart';
 import 'package:clarity/accounts/login/login_view.dart';
 import 'package:clarity/accounts/sign_up/create_account_view.dart';
 import 'package:clarity/services/audio_services.dart';
+import 'package:clarity/services/doctors/doctor_services.dart';
 import 'package:clarity/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
@@ -34,6 +36,7 @@ import 'package:stacked_services/stacked_services.dart';
     CupertinoRoute(page: ProfilePage),
     CupertinoRoute(page: AppBarView),
     CupertinoRoute(page: HomeHeaderView),
+    CupertinoRoute(page: DoctorPage),
     CupertinoRoute(page: StartUpView, initial: true)
   ],
   dependencies: [
@@ -42,6 +45,7 @@ import 'package:stacked_services/stacked_services.dart';
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: ProfileServices),
+    LazySingleton(classType: DoctorServices),
     // LazySingleton(classType: ProfileViewModel),
     // LazySingleton(classType: FloorViewModel),
     Singleton(classType: HomeViewmodel),

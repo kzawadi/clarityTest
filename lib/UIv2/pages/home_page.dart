@@ -24,6 +24,7 @@ class HomePage extends StatelessWidget {
               appBar: AppBarView(),
               backgroundColor: Theme.of(context).backgroundColor,
               body: CustomScrollView(
+                physics: BouncingScrollPhysics(),
                 slivers: <Widget>[
                   SliverList(
                     delegate: SliverChildListDelegate(

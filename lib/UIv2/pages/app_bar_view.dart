@@ -31,8 +31,8 @@ class AppBarView extends StatelessWidget implements PreferredSizeWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(13)),
                   child: Container(
-                    height: 40,
-                    width: 40,
+                    height: 30,
+                    width: 36,
                     decoration: BoxDecoration(
                       color: Theme.of(context).backgroundColor,
                     ),

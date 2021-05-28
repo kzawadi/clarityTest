@@ -1,11 +1,14 @@
 import 'dart:math';
+import 'package:clarity/UIv2/pages/app_bar_view.dart';
 import 'package:clarity/UIv2/pages/home_ViewModel.dart';
+import 'package:clarity/UIv2/pages/home_header_view.dart';
 import 'package:clarity/UIv2/theme/light_color.dart';
 import 'package:clarity/UIv2/theme/text_styles.dart';
 import 'package:clarity/UIv2/theme/theme.dart';
 import 'package:clarity/app/app.locator.dart';
 import 'package:clarity/model/dactor_model.dart';
 import 'package:clarity/UIv2/theme/extention.dart';
+import 'package:clarity/model/user_profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
@@ -18,14 +21,14 @@ class HomePage extends StatelessWidget {
         initialiseSpecialViewModelsOnce: true,
         onModelReady: (model) => model.futureToRun,
         builder: (context, model, child) => Scaffold(
-              appBar: _appBar(context),
+              appBar: AppBarView(),
               backgroundColor: Theme.of(context).backgroundColor,
               body: CustomScrollView(
                 slivers: <Widget>[
                   SliverList(
                     delegate: SliverChildListDelegate(
                       [
-                        _header(context),
+                        HomeHeaderView(),
                         _searchField(context),
                         _category(context),
                       ],
@@ -39,45 +42,46 @@ class HomePage extends StatelessWidget {
         viewModelBuilder: () => locator<HomeViewmodel>());
   }
 
-  Widget _appBar(BuildContext context) {
-    return AppBar(
-      elevation: 0,
-      backgroundColor: Theme.of(context).backgroundColor,
-      leading: Icon(
-        Icons.short_text,
-        size: 30,
-        color: Colors.black,
-      ),
-      actions: <Widget>[
-        Icon(
-          Icons.notifications_none,
-          size: 30,
-          color: LightColor.grey,
-        ),
-        ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(13)),
-          child: Container(
-            // height: 40,
-            // width: 40,
-            decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
-            ),
-            child: Image.asset("assets/user.png", fit: BoxFit.fill),
-          ),
-        ).p(8),
-      ],
-    );
-  }
+  // Widget _appBar(BuildContext context, HomeViewmodel model) {
+  //   return AppBar(
+  //     elevation: 0,
+  //     backgroundColor: Theme.of(context).backgroundColor,
+  //     leading: Icon(
+  //       Icons.short_text,
+  //       size: 30,
+  //       color: Colors.black,
+  //     ),
+  //     actions: <Widget>[
+  //       Icon(
+  //         Icons.notifications_none,
+  //         size: 30,
+  //         color: LightColor.grey,
+  //       ),
+  //       ClipRRect(
+  //         borderRadius: BorderRadius.all(Radius.circular(13)),
+  //         child: Container(
+  //           // height: 40,
+  //           // width: 40,
+  //           decoration: BoxDecoration(
+  //             color: Theme.of(context).backgroundColor,
+  //           ),
+  //           child: Image.asset(model.userData.photoUrl ?? "assets/user.png",
+  //               fit: BoxFit.fill),
+  //         ),
+  //       ).p(8),
+  //     ],
+  //   );
+  // }
 
-  Widget _header(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text("Hello,", style: TextStyles.title.subTitleColor),
-        Text("Peter Parker", style: TextStyles.h1Style),
-      ],
-    ).p16;
-  }
+  // Widget _header(BuildContext context, HomeViewmodel model) {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: <Widget>[
+  //       Text("Hello,", style: TextStyles.title.subTitleColor),
+  //       Text(model.userData.firstName ?? "name", style: TextStyles.h1Style),
+  //     ],
+  //   ).p16;
+  // }
 
   Widget _searchField(BuildContext context) {
     return Container(

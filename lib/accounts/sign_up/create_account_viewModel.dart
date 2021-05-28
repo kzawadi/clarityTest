@@ -11,7 +11,7 @@ class CreateAccountViewModel extends AuthenticationViewModel {
 
   CreateAccountViewModel()
       : super(
-            successRoute: Routes.homeView); //todo this route must get an audit
+            successRoute: Routes.floorPage); //todo this route must get an audit
 
   @override
   Future<FirebaseAuthenticationResult> runAuthentication() =>

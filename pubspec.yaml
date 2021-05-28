@@ -34,8 +34,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_auth: ^1.0.1
   firebase_core: ^1.2.0
+  firebase_storage: ^8.0.3
   flutter_hooks: null
   google_fonts: ^2.1.0
+  image_picker: ^0.7.4
   pretty_json: ^2.0.0
   rxdart: null
   stacked: null
@@ -43,9 +45,6 @@ dependencies:
   stacked_hooks: ^0.2.0
   stacked_services: ^0.8.6
   url_launcher: null
-  image_picker: ^0.7.4
-  firebase_storage: ^8.0.3
-
 
 dev_dependencies:
   flutter_test:

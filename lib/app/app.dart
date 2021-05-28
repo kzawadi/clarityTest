@@ -2,10 +2,12 @@
 import 'package:clarity/UI/home.dart';
 import 'package:clarity/UI/login.dart';
 import 'package:clarity/UI/room_view_widget.dart';
+import 'package:clarity/UIv2/pages/app_bar_view.dart';
 import 'package:clarity/UIv2/pages/detail_page.dart';
 import 'package:clarity/UIv2/pages/floor_ViewModel.dart';
 import 'package:clarity/UIv2/pages/floor_page.dart';
 import 'package:clarity/UIv2/pages/home_ViewModel.dart';
+import 'package:clarity/UIv2/pages/home_header_view.dart';
 import 'package:clarity/UIv2/pages/home_page.dart';
 import 'package:clarity/UIv2/pages/profile_ViewModel.dart';
 import 'package:clarity/UIv2/pages/profile_edit_page.dart';
@@ -30,6 +32,8 @@ import 'package:stacked_services/stacked_services.dart';
     CupertinoRoute(page: FloorPage),
     CupertinoRoute(page: ProfileEditingPage),
     CupertinoRoute(page: ProfilePage),
+    CupertinoRoute(page: AppBarView),
+    CupertinoRoute(page: HomeHeaderView),
     CupertinoRoute(page: StartUpView, initial: true)
   ],
   dependencies: [

@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -259,4 +262,50 @@ Widget customText(String msg,
       key: key,
     );
   }
+}
+
+dynamic customAdvanceNetworkImage(String path) {
+  if (path == null) {
+    path = dummyProfilePic;
+  }
+  return CachedNetworkImageProvider(
+    path ?? dummyProfilePic,
+  );
+}
+
+Widget loader() {
+  if (Platform.isIOS) {
+    return Center(
+      child: CupertinoActivityIndicator(),
+    );
+  } else {
+    return Center(
+      child: CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+      ),
+    );
+  }
+}
+
+String dummyProfilePic =
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6TaCLCqU4K0ieF27ayjl51NmitWaJAh_X0r1rLX4gMvOe0MDaYw&s';
+
+Widget customNetworkImage(String path, {BoxFit fit = BoxFit.contain}) {
+  return CachedNetworkImage(
+    fit: fit,
+    imageUrl: path ?? dummyProfilePic,
+    imageBuilder: (context, imageProvider) => Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: imageProvider,
+          fit: fit,
+        ),
+      ),
+    ),
+    placeholderFadeInDuration: Duration(milliseconds: 500),
+    placeholder: (context, url) => Container(
+      color: Color(0xffeeeeee),
+    ),
+    errorWidget: (context, url, error) => Icon(Icons.error),
+  );
 }

@@ -2,12 +2,14 @@ import 'dart:io';
 
 import 'package:clarity/app/app.locator.dart';
 import 'package:clarity/model/user_profile_model.dart';
+import 'package:clarity/services/user_model.dart';
 import 'package:clarity/services/utility.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as Path;
+import 'package:pretty_json/pretty_json.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 
 class ProfileServices {
@@ -132,5 +134,23 @@ class ProfileServices {
     } else
       cprint("user profile photo url not available to delete",
           event: "Delete profile");
+  }
+
+  Future<UserProfileModel> getProfileData({String uuid}) async {
+    UserProfileModel t;
+    await _userCollection.doc(uuid).get().then(
+      (value) {
+        t = UserProfileModel.fromMap(value.data());
+        // return UserProfileModel.fromMap(value);
+        // cprint(prettyJson(t, indent: 1) + "This is data from services");
+      },
+    );
+
+    // var b = _userCollection.doc(uuid).get();
+
+    // var g = UserProfileModel.fromMap(b.)
+
+    cprint(prettyJson(t, indent: 1) + "This is data from services");
+    return t;
   }
 }

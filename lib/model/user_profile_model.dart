@@ -9,13 +9,12 @@ class UserProfileModel {
   ///This is the firebase id
   String uuid;
   String photoUrl;
-  List<String> interests;
+  // List<String> interests;
   UserProfileModel({
     this.firstName,
     this.surname,
     this.uuid,
     this.photoUrl,
-    this.interests,
   });
 
   UserProfileModel copyWith({
@@ -23,14 +22,12 @@ class UserProfileModel {
     String surname,
     String uuid,
     String photoUrl,
-    List<String> interests,
   }) {
     return UserProfileModel(
       firstName: firstName ?? this.firstName,
       surname: surname ?? this.surname,
       uuid: uuid ?? this.uuid,
       photoUrl: photoUrl ?? this.photoUrl,
-      interests: interests ?? this.interests,
     );
   }
 
@@ -40,7 +37,6 @@ class UserProfileModel {
       'surname': surname,
       'uuid': uuid,
       'photoUrl': photoUrl,
-      'interests': interests,
     };
   }
 
@@ -52,7 +48,6 @@ class UserProfileModel {
       surname: map['surname'],
       uuid: map['uuid'],
       photoUrl: map['photoUrl'],
-      interests: List<String>.from(map['interests']),
     );
   }
 
@@ -63,7 +58,7 @@ class UserProfileModel {
 
   @override
   String toString() {
-    return 'UserProfileModel(firstName: $firstName, surname: $surname, uuid: $uuid, photoUrl: $photoUrl, interests: $interests)';
+    return 'UserProfileModel(firstName: $firstName, surname: $surname, uuid: $uuid, photoUrl: $photoUrl)';
   }
 
   @override
@@ -74,8 +69,7 @@ class UserProfileModel {
         o.firstName == firstName &&
         o.surname == surname &&
         o.uuid == uuid &&
-        o.photoUrl == photoUrl &&
-        listEquals(o.interests, interests);
+        o.photoUrl == photoUrl;
   }
 
   @override
@@ -83,7 +77,6 @@ class UserProfileModel {
     return firstName.hashCode ^
         surname.hashCode ^
         uuid.hashCode ^
-        photoUrl.hashCode ^
-        interests.hashCode;
+        photoUrl.hashCode;
   }
 }

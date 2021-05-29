@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:clarity/UIv2/pages/doctors/doctor_ViewModel.dart';
 import 'package:clarity/UIv2/theme/light_color.dart';
 import 'package:clarity/UIv2/theme/text_styles.dart';
+import 'package:clarity/app/app.locator.dart';
 import 'package:clarity/model/dactor_model.dart';
 import 'package:clarity/services/utility.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,8 @@ class DoctorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DoctorViewModel>.reactive(
+      initialiseSpecialViewModelsOnce: true,
+      disposeViewModel: false,
       onModelReady: (model) => model.stream,
       builder: (context, model, child) => SliverList(
         delegate: SliverChildListDelegate(
@@ -42,7 +45,7 @@ class DoctorPage extends StatelessWidget {
           ],
         ),
       ),
-      viewModelBuilder: () => DoctorViewModel(),
+      viewModelBuilder: () => locator<DoctorViewModel>(),
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:clarity/UIv2/pages/app_barViewModel.dart';
 import 'package:clarity/UIv2/pages/home_headerViewModel.dart';
 import 'package:clarity/UIv2/theme/text_styles.dart';
+import 'package:clarity/app/app.locator.dart';
 import 'package:clarity/services/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:clarity/UIv2/theme/extention.dart';
@@ -14,6 +15,8 @@ class HomeHeaderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeHeaderViewModel>.reactive(
+      initialiseSpecialViewModelsOnce: true,
+      disposeViewModel: false,
       onModelReady: (model) => model.futureToRun,
       builder: (context, model, child) {
         cprint(prettyJson(model.data) + "This is the Data");
@@ -30,7 +33,7 @@ class HomeHeaderView extends StatelessWidget {
               )
             : loader();
       },
-      viewModelBuilder: () => HomeHeaderViewModel(),
+      viewModelBuilder: () => locator<HomeHeaderViewModel>(),
     );
   }
 }

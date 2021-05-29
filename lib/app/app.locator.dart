@@ -10,7 +10,10 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../UIv2/pages/app_barViewModel.dart';
+import '../UIv2/pages/doctors/doctor_ViewModel.dart';
 import '../UIv2/pages/home_ViewModel.dart';
+import '../UIv2/pages/home_headerViewModel.dart';
 import '../UIv2/pages/profile_services.dart';
 import '../services/audio_services.dart';
 import '../services/doctors/doctor_services.dart';
@@ -24,6 +27,9 @@ void setupLocator() {
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => ProfileServices());
   locator.registerLazySingleton(() => DoctorServices());
+  locator.registerLazySingleton(() => AppBarViewmodel());
+  locator.registerLazySingleton(() => HomeHeaderViewModel());
+  locator.registerLazySingleton(() => DoctorViewModel());
   locator.registerSingleton(HomeViewmodel());
   locator.registerSingleton(FirebaseAuthenticationService());
 }

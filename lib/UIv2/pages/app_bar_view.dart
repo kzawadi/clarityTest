@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clarity/UIv2/pages/app_barViewModel.dart';
 import 'package:clarity/UIv2/theme/light_color.dart';
+import 'package:clarity/app/app.locator.dart';
 import 'package:clarity/services/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -12,6 +13,8 @@ class AppBarView extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<AppBarViewmodel>.reactive(
+      initialiseSpecialViewModelsOnce: true,
+      disposeViewModel: false,
       onModelReady: (model) => model.futureToRun,
       builder: (context, model, child) => model.dataReady
           ? AppBar(
@@ -43,7 +46,7 @@ class AppBarView extends StatelessWidget implements PreferredSizeWidget {
               ],
             )
           : loader(),
-      viewModelBuilder: () => AppBarViewmodel(),
+      viewModelBuilder: () => locator<AppBarViewmodel>(),
     );
   }
 

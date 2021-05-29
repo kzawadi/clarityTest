@@ -2,12 +2,15 @@
 import 'package:clarity/UI/home.dart';
 import 'package:clarity/UI/login.dart';
 import 'package:clarity/UI/room_view_widget.dart';
+import 'package:clarity/UIv2/pages/app_barViewModel.dart';
 import 'package:clarity/UIv2/pages/app_bar_view.dart';
 import 'package:clarity/UIv2/pages/detail_page.dart';
+import 'package:clarity/UIv2/pages/doctors/doctor_ViewModel.dart';
 import 'package:clarity/UIv2/pages/doctors/doctor_page.dart';
 import 'package:clarity/UIv2/pages/floor_ViewModel.dart';
 import 'package:clarity/UIv2/pages/floor_page.dart';
 import 'package:clarity/UIv2/pages/home_ViewModel.dart';
+import 'package:clarity/UIv2/pages/home_headerViewModel.dart';
 import 'package:clarity/UIv2/pages/home_header_view.dart';
 import 'package:clarity/UIv2/pages/home_page.dart';
 import 'package:clarity/UIv2/pages/profile_ViewModel.dart';
@@ -46,8 +49,9 @@ import 'package:stacked_services/stacked_services.dart';
     LazySingleton(classType: DialogService),
     LazySingleton(classType: ProfileServices),
     LazySingleton(classType: DoctorServices),
-    // LazySingleton(classType: ProfileViewModel),
-    // LazySingleton(classType: FloorViewModel),
+    LazySingleton(classType: AppBarViewmodel),
+    LazySingleton(classType: HomeHeaderViewModel),
+    LazySingleton(classType: DoctorViewModel),
     Singleton(classType: HomeViewmodel),
 
     // LazySingleton(classType: ProfileServices),

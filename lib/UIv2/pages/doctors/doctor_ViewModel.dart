@@ -6,9 +6,9 @@ import 'package:stacked/stacked.dart';
 class DoctorViewModel extends StreamViewModel<List<DoctorModel>> {
   final _doctorsServices = locator<DoctorServices>();
 
-  Future<void> getDoctors() async {
-    await _doctorsServices.getDoctors();
-  }
+  // Future<void> getDoctors() async {
+  //   await _doctorsServices.getDoctors();
+  // }
 
   @override
   Stream<List<DoctorModel>> get stream {

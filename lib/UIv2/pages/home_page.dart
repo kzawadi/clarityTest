@@ -98,6 +98,7 @@ class HomePage extends StatelessWidget {
           height: AppTheme.fullHeight(context) * .28,
           width: AppTheme.fullWidth(context),
           child: ListView(
+            physics: BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             children: <Widget>[
               _categoryCard(context, "Chemist & Drugist", "350 + Stores",

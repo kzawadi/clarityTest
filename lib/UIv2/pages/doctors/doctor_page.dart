@@ -1,11 +1,13 @@
 import 'dart:math';
 
+import 'package:clarity/UIv2/pages/doctors/detail_page.dart';
 import 'package:clarity/UIv2/pages/doctors/doctor_ViewModel.dart';
 import 'package:clarity/UIv2/theme/light_color.dart';
 import 'package:clarity/UIv2/theme/text_styles.dart';
 import 'package:clarity/app/app.locator.dart';
 import 'package:clarity/model/dactor_model.dart';
 import 'package:clarity/services/utility.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:clarity/UIv2/theme/extention.dart';
@@ -91,7 +93,7 @@ class DoctorPage extends StatelessWidget {
               ),
               child: customNetworkImage(
                 model.image,
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
               ),
             ),
           ),
@@ -106,9 +108,18 @@ class DoctorPage extends StatelessWidget {
             color: Theme.of(context).primaryColor,
           ),
         ),
-      ).ripple(() {
-        Navigator.pushNamed(context, "/DetailPage", arguments: model);
-      }, borderRadius: BorderRadius.all(Radius.circular(20))),
+      ).ripple(
+        () {
+          Navigator.of(context).push(CupertinoPageRoute(
+            builder: (context) => DoctorDetailPage(
+              model: model,
+            ),
+          ));
+        },
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+      ),
     );
   }
 

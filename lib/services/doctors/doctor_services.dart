@@ -13,36 +13,6 @@ class DoctorServices {
   static final CollectionReference _doctorsCollection =
       kfirestore.collection("doctors");
 
-  // List<DoctorModel> _doctorslist = [];
-
-  // Stream<List<DoctorModel>> listenDoctorsList() {
-  //   getDoctors();
-  //   return _doctorsListController.stream;
-  // }
-
-  // Future<void> getDoctors() async {
-  //   //todo remember to limit fetch GCP bill will be huge
-  //   await _doctorsCollection.get().then(
-  //     (value) {
-  //       value.docs.forEach(
-  //         (e) {
-  //           var t = DoctorModel.fromJson(e.data());
-  //           _doctorslist.add(t);
-  //           cprint("doctor added to list");
-  //         },
-  //       );
-  //       // return null;
-  //     },
-  //   );
-  //   _doctorsListController.add(_doctorslist);
-  //   cprint("${_doctorslist.length}  Number of doctors fetched from database");
-  // }
-
-  // final PublishSubject<List<DoctorModel>> postsController =
-  //     PublishSubject<List<DoctorModel>>();
-  // final PublishSubject<List<DoctorModel>> profileDataController =
-  // PublishSubject<List<DoctorModel>>();
-
   // #6: Create a list that will keep the paged results
   List<List<DoctorModel>> _allPagedResults = [];
   List<DoctorModel> _feed = [];
